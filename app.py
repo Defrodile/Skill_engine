@@ -27,7 +27,7 @@ def load_data():
 
 df = load_data()
 all_roles = list(df["Job Role"].unique())
-all_skills = sorted(list(df["Skill"].str.title().unique()))
+all_skills = sorted(list(df["Skill"].unique()))
 
 RESOURCE_DB = {
     "Python": {"time": "3 Weeks", "proj": "CSV Data Analytics Engine"},
@@ -116,14 +116,27 @@ if portal == "🎓 Job Seeker Analytics":
         role_matches = []
 
         for role in all_roles:
-            req_skills = df[df["Job Role"] == role].sort_values(by="Mentions", ascending=False).head(10)["Skill"].str.title().tolist()
+            # 1. Fetch top 15 required skills (expanding from 10)
+            req_df = df[df["Job Role"] == role].sort_values(by="Mentions", ascending=False).head(15)
+            
+            # 2. Keep exact casing (Removed .str.title())
+            req_skills = req_df["Skill"].tolist()
             req_set = set(req_skills)
             
+            # 3. Find intersection (Matched Skills)
             matched = user_set.intersection(req_set)
-            match_pct = round((len(matched) / len(req_set)) * 100) if req_set else 0
+            
+            # 4. Calculate Weighted Score
+            total_weight = req_df["Mentions"].sum()
+            matched_weight = req_df[req_df["Skill"].isin(matched)]["Mentions"].sum()
+            
+            match_pct = round((matched_weight / total_weight) * 100) if total_weight > 0 else 0
             
             role_matches.append({
-                "Job Role": role, "Match %": match_pct, "Missing Skills": list(req_set - user_set), "Matched": list(matched)
+                "Job Role": role, 
+                "Match %": match_pct, 
+                "Missing Skills": list(req_set - user_set), 
+                "Matched": list(matched)
             })
 
         match_df = pd.DataFrame(role_matches).sort_values(by="Match %", ascending=False)
