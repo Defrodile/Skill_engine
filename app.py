@@ -5,6 +5,8 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
+import re
+import PyPDF2
 
 # ==========================================
 # 0. SETUP & SAFEGUARD
@@ -61,8 +63,40 @@ if portal == "🎓 Job Seeker Analytics":
     m3.metric("Engine Latency", "12ms", "-4ms optimized", delta_color="inverse")
     st.divider()
 
-    st.markdown("### 🔍 Select Your Current Arsenal")
-    user_skills = st.multiselect("What technologies do you know?", options=all_skills, default=["Python"])
+    st.markdown("### 🔍 Build Your Skill Profile")
+    st.markdown("Upload your resume for AI parsing, or select skills manually.")
+    
+    # 🌟 NEW FEATURE: PDF Resume Parser
+    uploaded_file = st.file_uploader("📄 Upload Resume (PDF)", type=["pdf"])
+    
+    auto_skills = []
+    if uploaded_file is not None:
+        with st.spinner("🤖 AI scanning document for technical keywords..."):
+            pdf_reader = PyPDF2.PdfReader(uploaded_file)
+            resume_text = ""
+            for page in pdf_reader.pages:
+                page_text = page.extract_text()
+                if page_text:
+                    resume_text += page_text + " "
+            
+            # Match resume text against our market database using Regex word boundaries
+            for skill in all_skills:
+                if re.search(rf"\b{re.escape(skill)}\b", resume_text, re.IGNORECASE):
+                    auto_skills.append(skill)
+            
+            if auto_skills:
+                st.success(f"✅ AI found {len(auto_skills)} skills: {', '.join(auto_skills)}")
+            else:
+                st.warning("⚠️ No recognized tech skills found. Please add them manually.")
+
+    # The multiselect now acts as an editor. It auto-fills with resume skills if uploaded!
+    default_selection = auto_skills if uploaded_file else []
+    
+    user_skills = st.multiselect(
+        "Confirm or edit your skills:", 
+        options=all_skills, 
+        default=default_selection
+    )
 
     if user_skills:
         # 🌟 LIVELY UI: Toast notification triggers when skills are loaded
