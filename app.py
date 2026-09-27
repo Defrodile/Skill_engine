@@ -8,10 +8,21 @@ import plotly.graph_objects as go
 import re
 import PyPDF2
 
-# ==========================================
+
 # 0. SETUP & SAFEGUARD
-# ==========================================
-st.set_page_config(page_title="Workforce Skill Engine",  layout="wide")
+
+# Centered Professional Academic Title
+st.markdown(
+        """
+        <div style="text-align: center; padding-bottom: 20px;">
+            <h1 style="font-size: 2.3rem; margin-bottom: 0;">🎯 Workforce Skill & Vector Analytics Engine</h1>
+            <p style="font-size: 1.05rem; color: #888888; margin-top: 5px;">
+                A Data-Driven Skill Gap & Upskilling Engine Powered by Set Theory and API Market Engineering
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 if not os.path.exists("master_job_skills.csv"):
     sample_data = {
@@ -66,7 +77,7 @@ if portal == "Job Seeker Analytics":
     st.markdown("### Build Your Skill Profile")
     st.markdown("Upload your resume for AI parsing, or select skills manually.")
     
-    # 🌟 NEW FEATURE: PDF Resume Parser
+    #  NEW FEATURE: PDF Resume Parser
     uploaded_file = st.file_uploader("📄 Upload Resume (PDF)", type=["pdf"])
     
     auto_skills = []
@@ -79,7 +90,7 @@ if portal == "Job Seeker Analytics":
                 if page_text:
                     resume_text += page_text + " "
             
-            # Match resume text against our market database using Regex word boundaries
+            # Match resume  using Regex word boundaries
             for skill in all_skills:
                 if re.search(rf"\b{re.escape(skill)}\b", resume_text, re.IGNORECASE):
                     auto_skills.append(skill)
@@ -89,7 +100,7 @@ if portal == "Job Seeker Analytics":
             else:
                 st.warning("⚠️ No recognized tech skills found. Please add them manually.")
 
-    # The multiselect now acts as an editor. It auto-fills with resume skills if uploaded!
+    
     default_selection = auto_skills if uploaded_file else []
     
     user_skills = st.multiselect(
@@ -99,10 +110,10 @@ if portal == "Job Seeker Analytics":
     )
 
     if user_skills:
-        # 🌟 LIVELY UI: Toast notification triggers when skills are loaded
+        
         st.toast('Skill vectors loaded! Running analysis...', icon='⚡')
 
-        # 🌟 LIVELY UI: Multi-step AI thinking animation
+        
         with st.status("Computing career trajectories...", expanded=True) as status:
             st.write(" Extracting market skill requirements...")
             time.sleep(0.3)
@@ -115,14 +126,14 @@ if portal == "Job Seeker Analytics":
         role_matches = []
 
         for role in all_roles:
-            # 1. Fetch top 15 required skills (expanding from 10)
+            
             req_df = df[df["Job Role"] == role].sort_values(by="Mentions", ascending=False).head(15)
             
-            # 2. Keep exact casing (Removed .str.title())
+            
             req_skills = req_df["Skill"].tolist()
             req_set = set(req_skills)
             
-            # 3. Find intersection (Matched Skills)
+            
             matched = user_set.intersection(req_set)
             
             # 4. Calculate Weighted Score
@@ -180,16 +191,16 @@ if portal == "Job Seeker Analytics":
                     st.write(f"💡 **Project:** {info['proj']}")
                     st.write(f"🔗 [YouTube Tutorials](https://www.youtube.com/results?search_query={skill}+tutorial)")
 
-# ==========================================
+
 # 3. EMPLOYER PORTAL
-# ==========================================
+
 else:
     st.title("Market Intelligence & Demand")
     st.markdown("Analyze real-time skill demand across the tech industry.")
 
     target_role = st.selectbox("Select a role to analyze market demand:", all_roles)
     
-    # 🌟 LIVELY UI: Trigger a tiny visual effect when switching to employer view
+    
     st.toast(f"Pulling live market data for {target_role}...", icon="📡")
     
     role_df = df[df["Job Role"] == target_role].sort_values(by="Mentions", ascending=False).head(10)
