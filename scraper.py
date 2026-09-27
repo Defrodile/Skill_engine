@@ -4,19 +4,25 @@ import requests
 import pandas as pd
 
 # 1. Define target roles and common tech skills to extract
+# 1. Define target roles and common tech skills to extract
 TARGET_ROLES = [
     "Data Analyst", "Data Engineer", "Full Stack Engineer", 
     "Frontend Developer", "Backend Developer", "DevOps Engineer", 
-    "Cloud Architect", "Cybersecurity Analyst", "Machine Learning Engineer"
+    "Cloud Architect", "Cybersecurity Analyst", "Machine Learning Engineer",
+    "Mobile App Developer", "Systems Administrator", "Software Engineer", 
+    "Business Intelligence Analyst", "Product Manager", "Cloud Engineer", 
+    "AI Research Scientist", "Network Engineer", "Blockchain Developer",
+    "UI/UX Designer"
 ]
 
 SKILL_KEYWORDS = [
-    "Python", "SQL", "Excel", "Tableau", "Power BI", "R", "Java", "C++",
+    "Python", "SQL", "Excel", "Tableau", "Power BI", "R", "Java", "C++", "C",
     "JavaScript", "TypeScript", "React", "Node.js", "HTML", "CSS", "Docker",
     "Kubernetes", "AWS", "Azure", "GCP", "Git", "Linux", "Spark", "Airflow",
-    "TensorFlow", "PyTorch", "MongoDB", "PostgreSQL", "CI/CD", "Terraform"
+    "TensorFlow", "PyTorch", "MongoDB", "PostgreSQL", "CI/CD", "Terraform",
+    "Pandas", "Kotlin", "Swift", "Go", "Rust", "FastAPI", "Figma", "Solidity",
+    "Next.js", "Machine Learning"
 ]
-
 master_data = []
 
 print("📡 Fetching authentic job market data via Open API...")
