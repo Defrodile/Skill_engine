@@ -7,6 +7,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 import re
 import PyPDF2
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
 # 0. SETUP & SAFEGUARD
@@ -36,8 +39,103 @@ RESOURCE_DB = {
     "Tableau": {"time": "2 Weeks", "proj": "Workforce UI Dashboard"},
     "Docker": {"time": "2 Weeks", "proj": "Containerized Flask API"},
 }
+# ==========================================
+# EMAIL OTP DISPATCH ENGINE
+# ==========================================
+# Read credentials from .streamlit/secrets.toml
+SENDER_EMAIL = st.secrets["EMAIL_SENDER"]
+SENDER_PASSWORD = st.secrets["EMAIL_PASSWORD"]
 
+def send_otp_to_user(user_email, otp_code):
+    try:
+        msg = MIMEMultipart()
+        msg['From'] = f"Workforce Engine <{SENDER_EMAIL}>"
+        msg['To'] = user_email
+        msg['Subject'] = "Your Authentication Code - Workforce Skill Engine"
 
+        body = f"""Hello,
+
+Your One-Time Password (OTP) to access the Workforce Skill Engine is: {otp_code}
+
+This code is valid for your current login session. Do not share it with anyone.
+
+Regards,
+Workforce Skill Analytics Team"""
+        
+        msg.attach(MIMEText(body, 'plain'))
+
+        # Connect to Gmail SMTP server
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(SENDER_EMAIL, SENDER_PASSWORD)
+        server.send_message(msg)
+        server.quit()
+        return True
+    except Exception as e:
+        print(f"SMTP Error: {e}")
+        return False
+# ==========================================
+# 0.5. AUTHENTICATION & 2FA SESSION MANAGEMENT
+# ==========================================
+# Initialize session states for the OTP State Machine
+if 'logged_in' not in st.session_state:
+    st.session_state['logged_in'] = False
+if 'otp_sent' not in st.session_state:
+    st.session_state['otp_sent'] = False
+if 'generated_otp' not in st.session_state:
+    st.session_state['generated_otp'] = ""
+if 'mail_id' not in st.session_state:
+    st.session_state['mail_id'] = ""
+
+# If the user is NOT logged in, show the 2FA login screen and STOP the app
+if not st.session_state['logged_in']:
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'>Workforce Skill Engine</h2>", unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.info("System Authentication Required")
+        
+        # STATE 1: Enter Email
+        if not st.session_state['otp_sent']:
+            mail_input = st.text_input("Candidate Mail ID:")
+            
+            if st.button("Generate OTP", use_container_width=True):
+                if "@" in mail_input and "." in mail_input:
+                    # Generate a secure 4-digit OTP
+                    st.session_state['generated_otp'] = str(random.randint(1000, 9999))
+                    st.session_state['mail_id'] = mail_input
+                    
+                    # ACTUALLY SEND THE EMAIL HERE
+                    with st.spinner(f"Sending OTP to {mail_input}..."):
+                        success = send_otp_to_user(mail_input, st.session_state['generated_otp'])
+                        if success:
+                            st.session_state['otp_sent'] = True
+                            st.rerun()
+                        else:
+                            st.error("Failed to send OTP email. Check your secrets.toml file.")
+                else:
+                    st.error("Invalid Mail ID format.")
+                    
+        # STATE 2: Verify OTP
+        else:
+            st.success(f"OTP dispatched to {st.session_state['mail_id']}")
+            st.caption("Please check your email inbox (and spam folder).")
+            
+            entered_otp = st.text_input("Enter 4-Digit OTP:", max_chars=4)
+            
+            if st.button("Verify & Login", use_container_width=True):
+                if entered_otp == st.session_state['generated_otp']:
+                    st.session_state['logged_in'] = True
+                    st.rerun() # Unlocks the application
+                else:
+                    st.error("Authentication Failed: Incorrect OTP.")
+            
+            if st.button("Cancel / Use Different Email"):
+                st.session_state['otp_sent'] = False
+                st.rerun()
+                
+    st.stop() # CRITICAL: Prevents the dashboard from loading unauthenticated
 # 1. SIDEBAR NAVIGATION & BRANDING
 
 st.sidebar.image("https://cdn-icons-png.flaticon.com/512/1903/1903162.png", width=60)
@@ -48,7 +146,14 @@ portal = st.sidebar.radio("Select Dashboard View", ["Job Seeker Analytics", "Mar
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Project Info")
 st.sidebar.info("Developed by: **Team Zenith G1T7**\n\nB.Tech CSE (Data Science)\n\nHeritage Institute of Technology")
+st.sidebar.markdown("---")
+# Display logged-in user
+st.sidebar.success(f"👤 **Active User:**\n{st.session_state['mail_id']}")
 
+if st.sidebar.button("Logout"):
+    st.session_state['logged_in'] = False
+    st.session_state['mail_id'] = ""
+    st.rerun()
 
 # 2. STUDENT PORTAL
 
