@@ -11,18 +11,7 @@ import PyPDF2
 
 # 0. SETUP & SAFEGUARD
 
-# Centered Professional Academic Title
-st.markdown(
-        """
-        <div style="text-align: center; padding-bottom: 20px;">
-            <h1 style="font-size: 2.3rem; margin-bottom: 0;">🎯 Workforce Skill & Vector Analytics Engine</h1>
-            <p style="font-size: 1.05rem; color: #888888; margin-top: 5px;">
-                A Data-Driven Skill Gap & Upskilling Engine Powered by Set Theory and API Market Engineering
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+
 
 if not os.path.exists("master_job_skills.csv"):
     sample_data = {
@@ -64,21 +53,24 @@ st.sidebar.info("Developed by: **Team Zenith G1T7**\n\nB.Tech CSE (Data Science)
 # 2. STUDENT PORTAL
 
 if portal == "Job Seeker Analytics":
-    st.title("AI Career Match & Skill Gap Engine")
-    
-    # 🌟 LIVELY UI: Dynamic Deltas (Fake real-time market shifts for the demo)
-    st.markdown("### Live Market Pulse")
-    m1, m2, m3 = st.columns(3)
-    m1.metric("Tracked Job Roles", len(all_roles), f"+{random.randint(2, 8)} new this week")
-    m2.metric("Active Tech Skills", len(all_skills), f"+{random.randint(12, 30)}% industry demand")
-    m3.metric("Engine Latency", "12ms", "-4ms optimized", delta_color="inverse")
-    st.divider()
+    # Centered Professional Academic Title
+    st.markdown(
+        """
+        <div style="text-align: center; padding-bottom: 20px;">
+            <h1 style="font-size: 2.3rem; margin-bottom: 0;">Workforce Skill & Vector Analytics Engine</h1>
+            <p style="font-size: 1.05rem; color: #888888; margin-top: 5px;">
+                Skill Gap Analysis and Upskilling Roadmap Generator
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("### Build Your Skill Profile")
     st.markdown("Upload your resume for AI parsing, or select skills manually.")
     
     #  NEW FEATURE: PDF Resume Parser
-    uploaded_file = st.file_uploader("📄 Upload Resume (PDF)", type=["pdf"])
+    uploaded_file = st.file_uploader("Upload Resume (PDF)", type=["pdf"])
     
     auto_skills = []
     if uploaded_file is not None:
@@ -96,9 +88,9 @@ if portal == "Job Seeker Analytics":
                     auto_skills.append(skill)
             
             if auto_skills:
-                st.success(f"✅ AI found {len(auto_skills)} skills: {', '.join(auto_skills)}")
+                st.success(f" found {len(auto_skills)} skills: {', '.join(auto_skills)}")
             else:
-                st.warning("⚠️ No recognized tech skills found. Please add them manually.")
+                st.warning("No recognized tech skills found. Please add them manually.")
 
     
     default_selection = auto_skills if uploaded_file else []
@@ -111,7 +103,7 @@ if portal == "Job Seeker Analytics":
 
     if user_skills:
         
-        st.toast('Skill vectors loaded! Running analysis...', icon='⚡')
+        st.toast('Running analysis...')
 
         
         with st.status("Computing career trajectories...", expanded=True) as status:
@@ -157,7 +149,7 @@ if portal == "Job Seeker Analytics":
         missing_skills = selected_info["Missing Skills"]
         matched_skills = selected_info["Matched"]
 
-        tab1, tab2, tab3 = st.tabs(["📊 Gap Analysis", "🕸️ Skill Radar", "📚 Learning Path"])
+        tab1, tab2, tab3 = st.tabs(["Gap Analysis", "Skill Radar", "Learning Path"])
 
         with tab1:
             st.markdown(f"### Readiness Score: **{match_pct}%**")
@@ -169,8 +161,26 @@ if portal == "Job Seeker Analytics":
             with col2:
                 st.error(f"**Missing Skills ({len(missing_skills)}):**\n" + ", ".join(missing_skills) if missing_skills else "None! You are ready.")
             
-            csv_export = match_df.to_csv(index=False).encode('utf-8')
-            st.download_button(label="📄 Export Gap Report", data=csv_export, file_name="gap_report.csv", mime="text/csv")
+           
+            
+            # Targeted CSV Gap Report Export
+            gap_data = []
+            for s in matched_skills:
+                gap_data.append({"Skill": s, "Status": "Acquired", "Action Required": "None - Profile Matched"})
+            for s in missing_skills:
+                info = RESOURCE_DB.get(s, {"time": "2 Weeks", "proj": f"Mini-project utilizing {s}"})
+                gap_data.append({"Skill": s, "Status": "Missing", "Action Required": f"Learn in {info['time']} via {info['proj']}"})
+            
+            report_df = pd.DataFrame(gap_data)
+            clean_role_filename = target_role.lower().replace(" ", "_")
+            csv_export = report_df.to_csv(index=False).encode('utf-8')
+            
+            st.download_button(
+                label=f"Export Gap Report ({target_role})", 
+                data=csv_export, 
+                file_name=f"{clean_role_filename}_gap_report.csv", 
+                mime="text/csv"
+            )
 
         with tab2:
             st.markdown("### Competency Distribution")
