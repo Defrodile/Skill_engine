@@ -41,7 +41,7 @@ RESOURCE_DB = {
 }
 # ==========================================
 # EMAIL OTP DISPATCH ENGINE
-# ==========================================
+# ==========================================~
 # Read credentials from .streamlit/secrets.toml
 SENDER_EMAIL = st.secrets["EMAIL_SENDER"]
 SENDER_PASSWORD = st.secrets["EMAIL_PASSWORD"]
@@ -162,9 +162,9 @@ if portal == "Job Seeker Analytics":
     st.markdown(
         """
         <div style="text-align: center; padding-bottom: 20px;">
-            <h1 style="font-size: 2.3rem; margin-bottom: 0;">Workforce Skill & Vector Analytics Engine</h1>
+            <h1 style="font-size: 2.3rem; margin-bottom: 0;">Workforce Skill Analytics Engine</h1>
             <p style="font-size: 1.05rem; color: #888888; margin-top: 5px;">
-                Skill Gap Analysis and Upskilling Roadmap Generator
+                Personalized Learning & Career Path Engine 
             </p>
         </div>
         """,
