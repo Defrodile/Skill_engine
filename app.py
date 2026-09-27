@@ -1,5 +1,4 @@
 import os
-import time
 import random
 import pandas as pd
 import streamlit as st
@@ -172,14 +171,14 @@ if portal == "Job Seeker Analytics":
     )
 
     st.markdown("### Build Your Skill Profile")
-    st.markdown("Upload your resume for AI parsing, or select skills manually.")
+    st.markdown("Upload your resume , or select skills manually.")
     
     #  NEW FEATURE: PDF Resume Parser
     uploaded_file = st.file_uploader("Upload Resume (PDF)", type=["pdf"])
     
     auto_skills = []
     if uploaded_file is not None:
-        with st.spinner("AI scanning document for technical keywords..."):
+        with st.spinner("scanning document for technical keywords..."):
             pdf_reader = PyPDF2.PdfReader(uploaded_file)
             resume_text = ""
             for page in pdf_reader.pages:
@@ -211,35 +210,29 @@ if portal == "Job Seeker Analytics":
         st.toast('Running analysis...')
 
         
-        with st.status("Computing career trajectories...", expanded=True) as status:
-            st.write(" Extracting market skill requirements...")
-            time.sleep(0.3)
-           
-            st.write("Generating predictive roadmaps...")
-            time.sleep(0.3)
-            status.update(label="Analysis Complete!", state="complete", expanded=False)
+        with st.spinner("Computing market vectors and matching skills..."):
 
-        user_set = set(user_skills)
-        role_matches = []
+            user_set = set(user_skills)
+            role_matches = []
 
-        for role in all_roles:
+            for role in all_roles:
             
-            req_df = df[df["Job Role"] == role].sort_values(by="Mentions", ascending=False).head(15)
-            
-            
-            req_skills = req_df["Skill"].tolist()
-            req_set = set(req_skills)
+                req_df = df[df["Job Role"] == role].sort_values(by="Mentions", ascending=False).head(15)
             
             
-            matched = user_set.intersection(req_set)
+                req_skills = req_df["Skill"].tolist()
+                req_set = set(req_skills)
+            
+            
+                matched = user_set.intersection(req_set)
             
             # 4. Calculate Weighted Score
-            total_weight = req_df["Mentions"].sum()
-            matched_weight = req_df[req_df["Skill"].isin(matched)]["Mentions"].sum()
+                total_weight = req_df["Mentions"].sum()
+                matched_weight = req_df[req_df["Skill"].isin(matched)]["Mentions"].sum()
             
-            match_pct = round((matched_weight / total_weight) * 100) if total_weight > 0 else 0
+                match_pct = round((matched_weight / total_weight) * 100) if total_weight > 0 else 0
             
-            role_matches.append({
+                role_matches.append({
                 "Job Role": role, 
                 "Match %": match_pct, 
                 "Missing Skills": list(req_set - user_set), 
@@ -247,7 +240,7 @@ if portal == "Job Seeker Analytics":
             })
 
         match_df = pd.DataFrame(role_matches).sort_values(by="Match %", ascending=False)
-        target_role = st.selectbox("Target Role for Deep Analysis:", match_df["Job Role"].tolist())
+        target_role = st.selectbox("Target Role for Analysis:", match_df["Job Role"].tolist())
         
         selected_info = match_df[match_df["Job Role"] == target_role].iloc[0]
         match_pct = selected_info["Match %"]
@@ -302,8 +295,8 @@ if portal == "Job Seeker Analytics":
             st.markdown("### Action Plan")
             for skill in missing_skills:
                 info = RESOURCE_DB.get(skill, {"time": "2 Weeks", "proj": f"Mini-project utilizing {skill}"})
-                with st.expander(f"❌ Learn **{skill}** (Est. {info['time']})"):
-                    st.write(f"💡 **Project:** {info['proj']}")
+                with st.expander(f" Learn **{skill}** (Est. {info['time']})"):
+                    st.write(f" **Project:** {info['proj']}")
                     st.write(f"🔗 [YouTube Tutorials](https://www.youtube.com/results?search_query={skill}+tutorial)")
 
 
