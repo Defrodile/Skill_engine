@@ -2,6 +2,7 @@ Job Role,Skill,Mentions
 Data Analyst,Python,300
 Data Analyst,Excel,150
 Data Analyst,Java,250
+Data Analyst,C,250
 Data Analyst,JavaScript,300
 Data Analyst,TypeScript,350
 Data Analyst,React,350
@@ -13,9 +14,16 @@ Data Analyst,Kubernetes,150
 Data Analyst,Azure,150
 Data Analyst,Git,150
 Data Analyst,PostgreSQL,200
+Data Analyst,Swift,250
+Data Analyst,Go,150
+Data Analyst,Rust,250
+Data Analyst,Figma,200
+Data Analyst,Next.js,300
+Data Analyst,Machine Learning,300
 Data Engineer,Python,300
 Data Engineer,Excel,150
 Data Engineer,Java,250
+Data Engineer,C,250
 Data Engineer,JavaScript,300
 Data Engineer,TypeScript,350
 Data Engineer,React,350
@@ -27,9 +35,16 @@ Data Engineer,Kubernetes,150
 Data Engineer,Azure,150
 Data Engineer,Git,150
 Data Engineer,PostgreSQL,200
+Data Engineer,Swift,250
+Data Engineer,Go,150
+Data Engineer,Rust,250
+Data Engineer,Figma,200
+Data Engineer,Next.js,300
+Data Engineer,Machine Learning,300
 Full Stack Engineer,Python,300
 Full Stack Engineer,Excel,150
 Full Stack Engineer,Java,250
+Full Stack Engineer,C,250
 Full Stack Engineer,JavaScript,300
 Full Stack Engineer,TypeScript,350
 Full Stack Engineer,React,350
@@ -41,9 +56,16 @@ Full Stack Engineer,Kubernetes,150
 Full Stack Engineer,Azure,150
 Full Stack Engineer,Git,150
 Full Stack Engineer,PostgreSQL,200
+Full Stack Engineer,Swift,250
+Full Stack Engineer,Go,150
+Full Stack Engineer,Rust,250
+Full Stack Engineer,Figma,200
+Full Stack Engineer,Next.js,300
+Full Stack Engineer,Machine Learning,300
 Frontend Developer,Python,300
 Frontend Developer,Excel,150
 Frontend Developer,Java,250
+Frontend Developer,C,250
 Frontend Developer,JavaScript,300
 Frontend Developer,TypeScript,350
 Frontend Developer,React,350
@@ -55,9 +77,16 @@ Frontend Developer,Kubernetes,150
 Frontend Developer,Azure,150
 Frontend Developer,Git,150
 Frontend Developer,PostgreSQL,200
+Frontend Developer,Swift,250
+Frontend Developer,Go,150
+Frontend Developer,Rust,250
+Frontend Developer,Figma,200
+Frontend Developer,Next.js,300
+Frontend Developer,Machine Learning,300
 Backend Developer,Python,300
 Backend Developer,Excel,150
 Backend Developer,Java,250
+Backend Developer,C,250
 Backend Developer,JavaScript,300
 Backend Developer,TypeScript,350
 Backend Developer,React,350
@@ -69,9 +98,16 @@ Backend Developer,Kubernetes,150
 Backend Developer,Azure,150
 Backend Developer,Git,150
 Backend Developer,PostgreSQL,200
+Backend Developer,Swift,250
+Backend Developer,Go,150
+Backend Developer,Rust,250
+Backend Developer,Figma,200
+Backend Developer,Next.js,300
+Backend Developer,Machine Learning,300
 DevOps Engineer,Python,300
 DevOps Engineer,Excel,150
 DevOps Engineer,Java,250
+DevOps Engineer,C,250
 DevOps Engineer,JavaScript,300
 DevOps Engineer,TypeScript,350
 DevOps Engineer,React,350
@@ -83,9 +119,16 @@ DevOps Engineer,Kubernetes,150
 DevOps Engineer,Azure,150
 DevOps Engineer,Git,150
 DevOps Engineer,PostgreSQL,200
+DevOps Engineer,Swift,250
+DevOps Engineer,Go,150
+DevOps Engineer,Rust,250
+DevOps Engineer,Figma,200
+DevOps Engineer,Next.js,300
+DevOps Engineer,Machine Learning,300
 Cloud Architect,Python,300
 Cloud Architect,Excel,150
 Cloud Architect,Java,250
+Cloud Architect,C,250
 Cloud Architect,JavaScript,300
 Cloud Architect,TypeScript,350
 Cloud Architect,React,350
@@ -97,9 +140,16 @@ Cloud Architect,Kubernetes,150
 Cloud Architect,Azure,150
 Cloud Architect,Git,150
 Cloud Architect,PostgreSQL,200
+Cloud Architect,Swift,250
+Cloud Architect,Go,150
+Cloud Architect,Rust,250
+Cloud Architect,Figma,200
+Cloud Architect,Next.js,300
+Cloud Architect,Machine Learning,300
 Cybersecurity Analyst,Python,300
 Cybersecurity Analyst,Excel,150
 Cybersecurity Analyst,Java,250
+Cybersecurity Analyst,C,250
 Cybersecurity Analyst,JavaScript,300
 Cybersecurity Analyst,TypeScript,350
 Cybersecurity Analyst,React,350
@@ -111,9 +161,16 @@ Cybersecurity Analyst,Kubernetes,150
 Cybersecurity Analyst,Azure,150
 Cybersecurity Analyst,Git,150
 Cybersecurity Analyst,PostgreSQL,200
+Cybersecurity Analyst,Swift,250
+Cybersecurity Analyst,Go,150
+Cybersecurity Analyst,Rust,250
+Cybersecurity Analyst,Figma,200
+Cybersecurity Analyst,Next.js,300
+Cybersecurity Analyst,Machine Learning,300
 Machine Learning Engineer,Python,300
 Machine Learning Engineer,Excel,150
 Machine Learning Engineer,Java,250
+Machine Learning Engineer,C,250
 Machine Learning Engineer,JavaScript,300
 Machine Learning Engineer,TypeScript,350
 Machine Learning Engineer,React,350
@@ -125,3 +182,219 @@ Machine Learning Engineer,Kubernetes,150
 Machine Learning Engineer,Azure,150
 Machine Learning Engineer,Git,150
 Machine Learning Engineer,PostgreSQL,200
+Machine Learning Engineer,Swift,250
+Machine Learning Engineer,Go,150
+Machine Learning Engineer,Rust,250
+Machine Learning Engineer,Figma,200
+Machine Learning Engineer,Next.js,300
+Machine Learning Engineer,Machine Learning,300
+Mobile App Developer,Python,300
+Mobile App Developer,Excel,150
+Mobile App Developer,Java,250
+Mobile App Developer,C,250
+Mobile App Developer,JavaScript,300
+Mobile App Developer,TypeScript,350
+Mobile App Developer,React,350
+Mobile App Developer,Node.js,300
+Mobile App Developer,HTML,150
+Mobile App Developer,CSS,200
+Mobile App Developer,Docker,200
+Mobile App Developer,Kubernetes,150
+Mobile App Developer,Azure,150
+Mobile App Developer,Git,150
+Mobile App Developer,PostgreSQL,200
+Mobile App Developer,Swift,250
+Mobile App Developer,Go,150
+Mobile App Developer,Rust,250
+Mobile App Developer,Figma,200
+Mobile App Developer,Next.js,300
+Mobile App Developer,Machine Learning,300
+Systems Administrator,Python,300
+Systems Administrator,Excel,150
+Systems Administrator,Java,250
+Systems Administrator,C,250
+Systems Administrator,JavaScript,300
+Systems Administrator,TypeScript,350
+Systems Administrator,React,350
+Systems Administrator,Node.js,300
+Systems Administrator,HTML,150
+Systems Administrator,CSS,200
+Systems Administrator,Docker,200
+Systems Administrator,Kubernetes,150
+Systems Administrator,Azure,150
+Systems Administrator,Git,150
+Systems Administrator,PostgreSQL,200
+Systems Administrator,Swift,250
+Systems Administrator,Go,150
+Systems Administrator,Rust,250
+Systems Administrator,Figma,200
+Systems Administrator,Next.js,300
+Systems Administrator,Machine Learning,300
+Software Engineer,Python,300
+Software Engineer,Excel,150
+Software Engineer,Java,250
+Software Engineer,C,250
+Software Engineer,JavaScript,300
+Software Engineer,TypeScript,350
+Software Engineer,React,350
+Software Engineer,Node.js,300
+Software Engineer,HTML,150
+Software Engineer,CSS,200
+Software Engineer,Docker,200
+Software Engineer,Kubernetes,150
+Software Engineer,Azure,150
+Software Engineer,Git,150
+Software Engineer,PostgreSQL,200
+Software Engineer,Swift,250
+Software Engineer,Go,150
+Software Engineer,Rust,250
+Software Engineer,Figma,200
+Software Engineer,Next.js,300
+Software Engineer,Machine Learning,300
+Business Intelligence Analyst,Python,300
+Business Intelligence Analyst,Excel,150
+Business Intelligence Analyst,Java,250
+Business Intelligence Analyst,C,250
+Business Intelligence Analyst,JavaScript,300
+Business Intelligence Analyst,TypeScript,350
+Business Intelligence Analyst,React,350
+Business Intelligence Analyst,Node.js,300
+Business Intelligence Analyst,HTML,150
+Business Intelligence Analyst,CSS,200
+Business Intelligence Analyst,Docker,200
+Business Intelligence Analyst,Kubernetes,150
+Business Intelligence Analyst,Azure,150
+Business Intelligence Analyst,Git,150
+Business Intelligence Analyst,PostgreSQL,200
+Business Intelligence Analyst,Swift,250
+Business Intelligence Analyst,Go,150
+Business Intelligence Analyst,Rust,250
+Business Intelligence Analyst,Figma,200
+Business Intelligence Analyst,Next.js,300
+Business Intelligence Analyst,Machine Learning,300
+Product Manager,Python,300
+Product Manager,Excel,150
+Product Manager,Java,250
+Product Manager,C,250
+Product Manager,JavaScript,300
+Product Manager,TypeScript,350
+Product Manager,React,350
+Product Manager,Node.js,300
+Product Manager,HTML,150
+Product Manager,CSS,200
+Product Manager,Docker,200
+Product Manager,Kubernetes,150
+Product Manager,Azure,150
+Product Manager,Git,150
+Product Manager,PostgreSQL,200
+Product Manager,Swift,250
+Product Manager,Go,150
+Product Manager,Rust,250
+Product Manager,Figma,200
+Product Manager,Next.js,300
+Product Manager,Machine Learning,300
+Cloud Engineer,Python,300
+Cloud Engineer,Excel,150
+Cloud Engineer,Java,250
+Cloud Engineer,C,250
+Cloud Engineer,JavaScript,300
+Cloud Engineer,TypeScript,350
+Cloud Engineer,React,350
+Cloud Engineer,Node.js,300
+Cloud Engineer,HTML,150
+Cloud Engineer,CSS,200
+Cloud Engineer,Docker,200
+Cloud Engineer,Kubernetes,150
+Cloud Engineer,Azure,150
+Cloud Engineer,Git,150
+Cloud Engineer,PostgreSQL,200
+Cloud Engineer,Swift,250
+Cloud Engineer,Go,150
+Cloud Engineer,Rust,250
+Cloud Engineer,Figma,200
+Cloud Engineer,Next.js,300
+Cloud Engineer,Machine Learning,300
+AI Research Scientist,Python,300
+AI Research Scientist,Excel,150
+AI Research Scientist,Java,250
+AI Research Scientist,C,250
+AI Research Scientist,JavaScript,300
+AI Research Scientist,TypeScript,350
+AI Research Scientist,React,350
+AI Research Scientist,Node.js,300
+AI Research Scientist,HTML,150
+AI Research Scientist,CSS,200
+AI Research Scientist,Docker,200
+AI Research Scientist,Kubernetes,150
+AI Research Scientist,Azure,150
+AI Research Scientist,Git,150
+AI Research Scientist,PostgreSQL,200
+AI Research Scientist,Swift,250
+AI Research Scientist,Go,150
+AI Research Scientist,Rust,250
+AI Research Scientist,Figma,200
+AI Research Scientist,Next.js,300
+AI Research Scientist,Machine Learning,300
+Network Engineer,Python,300
+Network Engineer,Excel,150
+Network Engineer,Java,250
+Network Engineer,C,250
+Network Engineer,JavaScript,300
+Network Engineer,TypeScript,350
+Network Engineer,React,350
+Network Engineer,Node.js,300
+Network Engineer,HTML,150
+Network Engineer,CSS,200
+Network Engineer,Docker,200
+Network Engineer,Kubernetes,150
+Network Engineer,Azure,150
+Network Engineer,Git,150
+Network Engineer,PostgreSQL,200
+Network Engineer,Swift,250
+Network Engineer,Go,150
+Network Engineer,Rust,250
+Network Engineer,Figma,200
+Network Engineer,Next.js,300
+Network Engineer,Machine Learning,300
+Blockchain Developer,Python,300
+Blockchain Developer,Excel,150
+Blockchain Developer,Java,250
+Blockchain Developer,C,250
+Blockchain Developer,JavaScript,300
+Blockchain Developer,TypeScript,350
+Blockchain Developer,React,350
+Blockchain Developer,Node.js,300
+Blockchain Developer,HTML,150
+Blockchain Developer,CSS,200
+Blockchain Developer,Docker,200
+Blockchain Developer,Kubernetes,150
+Blockchain Developer,Azure,150
+Blockchain Developer,Git,150
+Blockchain Developer,PostgreSQL,200
+Blockchain Developer,Swift,250
+Blockchain Developer,Go,150
+Blockchain Developer,Rust,250
+Blockchain Developer,Figma,200
+Blockchain Developer,Next.js,300
+Blockchain Developer,Machine Learning,300
+UI/UX Designer,Python,300
+UI/UX Designer,Excel,150
+UI/UX Designer,Java,250
+UI/UX Designer,C,250
+UI/UX Designer,JavaScript,300
+UI/UX Designer,TypeScript,350
+UI/UX Designer,React,350
+UI/UX Designer,Node.js,300
+UI/UX Designer,HTML,150
+UI/UX Designer,CSS,200
+UI/UX Designer,Docker,200
+UI/UX Designer,Kubernetes,150
+UI/UX Designer,Azure,150
+UI/UX Designer,Git,150
+UI/UX Designer,PostgreSQL,200
+UI/UX Designer,Swift,250
+UI/UX Designer,Go,150
+UI/UX Designer,Rust,250
+UI/UX Designer,Figma,200
+UI/UX Designer,Next.js,300
+UI/UX Designer,Machine Learning,300
