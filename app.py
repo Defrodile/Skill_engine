@@ -11,7 +11,7 @@ import PyPDF2
 # ==========================================
 # 0. SETUP & SAFEGUARD
 # ==========================================
-st.set_page_config(page_title="Workforce Skill Engine", page_icon="🚀", layout="wide")
+st.set_page_config(page_title="Workforce Skill Engine",  layout="wide")
 
 if not os.path.exists("master_job_skills.csv"):
     sample_data = {
@@ -37,33 +37,33 @@ RESOURCE_DB = {
     "Docker": {"time": "2 Weeks", "proj": "Containerized Flask API"},
 }
 
-# ==========================================
+
 # 1. SIDEBAR NAVIGATION & BRANDING
-# ==========================================
+
 st.sidebar.image("https://cdn-icons-png.flaticon.com/512/1903/1903162.png", width=60)
-st.sidebar.title("🚀 Skill Gap Engine")
-st.sidebar.markdown("v2.5 - Dynamic Edition")
-portal = st.sidebar.radio("Select Dashboard View", ["🎓 Job Seeker Analytics", "🏢 Market Intelligence"])
+st.sidebar.title("Skill Gap Engine")
+st.sidebar.markdown("v3")
+portal = st.sidebar.radio("Select Dashboard View", ["Job Seeker Analytics", "Market Intelligence"])
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 👨‍💻 Project Info")
+st.sidebar.markdown("### Project Info")
 st.sidebar.info("Developed by: **Team Zenith G1T7**\n\nB.Tech CSE (Data Science)\n\nHeritage Institute of Technology")
 
-# ==========================================
+
 # 2. STUDENT PORTAL
-# ==========================================
-if portal == "🎓 Job Seeker Analytics":
-    st.title("🎯 AI Career Match & Skill Gap Engine")
+
+if portal == "Job Seeker Analytics":
+    st.title("AI Career Match & Skill Gap Engine")
     
     # 🌟 LIVELY UI: Dynamic Deltas (Fake real-time market shifts for the demo)
-    st.markdown("### 🌍 Live Market Pulse")
+    st.markdown("### Live Market Pulse")
     m1, m2, m3 = st.columns(3)
     m1.metric("Tracked Job Roles", len(all_roles), f"+{random.randint(2, 8)} new this week")
     m2.metric("Active Tech Skills", len(all_skills), f"+{random.randint(12, 30)}% industry demand")
     m3.metric("Engine Latency", "12ms", "-4ms optimized", delta_color="inverse")
     st.divider()
 
-    st.markdown("### 🔍 Build Your Skill Profile")
+    st.markdown("### Build Your Skill Profile")
     st.markdown("Upload your resume for AI parsing, or select skills manually.")
     
     # 🌟 NEW FEATURE: PDF Resume Parser
@@ -71,7 +71,7 @@ if portal == "🎓 Job Seeker Analytics":
     
     auto_skills = []
     if uploaded_file is not None:
-        with st.spinner("🤖 AI scanning document for technical keywords..."):
+        with st.spinner("AI scanning document for technical keywords..."):
             pdf_reader = PyPDF2.PdfReader(uploaded_file)
             resume_text = ""
             for page in pdf_reader.pages:
@@ -103,12 +103,11 @@ if portal == "🎓 Job Seeker Analytics":
         st.toast('Skill vectors loaded! Running analysis...', icon='⚡')
 
         # 🌟 LIVELY UI: Multi-step AI thinking animation
-        with st.status("🧠 AI computing career trajectories...", expanded=True) as status:
-            st.write("🔍 Extracting market skill requirements...")
+        with st.status("Computing career trajectories...", expanded=True) as status:
+            st.write(" Extracting market skill requirements...")
             time.sleep(0.3)
-            st.write("🧮 Executing set-intersection matrices...")
-            time.sleep(0.3)
-            st.write("📈 Generating predictive roadmaps...")
+           
+            st.write("Generating predictive roadmaps...")
             time.sleep(0.3)
             status.update(label="Analysis Complete!", state="complete", expanded=False)
 
@@ -140,7 +139,7 @@ if portal == "🎓 Job Seeker Analytics":
             })
 
         match_df = pd.DataFrame(role_matches).sort_values(by="Match %", ascending=False)
-        target_role = st.selectbox("🎯 Target Role for Deep Analysis:", match_df["Job Role"].tolist())
+        target_role = st.selectbox("Target Role for Deep Analysis:", match_df["Job Role"].tolist())
         
         selected_info = match_df[match_df["Job Role"] == target_role].iloc[0]
         match_pct = selected_info["Match %"]
@@ -185,7 +184,7 @@ if portal == "🎓 Job Seeker Analytics":
 # 3. EMPLOYER PORTAL
 # ==========================================
 else:
-    st.title("🏢 Market Intelligence & Demand")
+    st.title("Market Intelligence & Demand")
     st.markdown("Analyze real-time skill demand across the tech industry.")
 
     target_role = st.selectbox("Select a role to analyze market demand:", all_roles)
